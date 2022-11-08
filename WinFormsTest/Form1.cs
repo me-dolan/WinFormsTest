@@ -127,10 +127,6 @@ namespace WinFormsTest
                 }
 
                 string rdyLine = string.Join('\t', splitLine);
-                if (string.IsNullOrEmpty(firstLine))
-                {
-                    firstLine = rdyLine;
-                }
                 allLine.Add(rdyLine);
                 splitLine.Clear();
             });
