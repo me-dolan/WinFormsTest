@@ -114,6 +114,11 @@ namespace WinFormsTest
             Parallel.ForEach(fileLine, chunk =>
             {
                 var splitLine = chunk.Split("\t").ToList();
+                if (splitLine[0] == "TY" || splitLine[0] == "LM")
+                {
+                    splitLine.Clear();
+                    return;
+                }
                 splitLine.RemoveAt(24);
                 if (double.TryParse(splitLine[23], NumberStyles.Float, new CultureInfo("en-US"), out double result))
                 {
@@ -130,6 +135,7 @@ namespace WinFormsTest
                 splitLine.Clear();
             });
             stopwatch.Stop();
+
             //foreach (var chunk in fileLine)
             //{
             //    Parallel.ForEach(chunk, (item) =>
@@ -158,6 +164,11 @@ namespace WinFormsTest
             //foreach (var item in fileLine)
             //{
             //    var splitLine = item.Split("\t").ToList();
+            //    if (splitLine[0] == "TY" || splitLine[0] == "LM")
+            //    {
+            //        splitLine.Clear();
+            //        continue;
+            //    }
             //    splitLine.RemoveAt(24);
             //    if (double.TryParse(splitLine[23], NumberStyles.Float, new CultureInfo("en-US"), out double result))
             //    {
@@ -175,7 +186,6 @@ namespace WinFormsTest
             //}
 
             //stopwatch.Stop();
-
             allLine.RemoveAt(0);
             allLine.Sort();
             //List<string> list1 = new List<string>() { "sep=" ,firstLine };
